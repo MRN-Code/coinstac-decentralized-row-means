@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "name": "decentralized row means demo",
+    "id": "decentralized-row-means",
+    "version": "v1.0.0",
+    "repository": "",
+    "description": "a test for decentralized row means"
+  },
+  "computation": {
+    "type": "docker",
+    "dockerImage": "decentralized-row-means",
+    "command": [
+      "python",
+      "\/computation\/local.py"
+    ],
+    "remote": {
+      "type": "docker",
+      "dockerImage": "decentralized-row-means",
+      "command": [
+        "python",
+        "\/computation\/remote.py"
+      ]
+    },
+    "input": {
+      "samples": {
+        "label": "Samples",
+        "type": "array",
+        "extensions": [
+          [
+            "mat"
+          ]
+        ]
+      }
+    },
+    "output": {
+      "row_mean_values_global": {
+        "label": "Global Row Means",
+        "type": "array"
+      },
+      "row_mean_values_local": {
+        "label": "Local Row Means",
+        "type": "dict"
+      }
+    }
+  }
+}
