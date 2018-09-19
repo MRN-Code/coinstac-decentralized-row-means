@@ -1,0 +1,12 @@
+[
+    {
+        "samples": {
+            "value": "local0.data"
+        }
+    },
+    {
+        "samples": {
+            "value": "local1.data"
+        }
+    }
+]
