@@ -6,6 +6,7 @@ Created on Thu Sep 27 17:03:00 2018 (MDT)
 @author: Rogers F. Silva
 """
 
+import numpy as np
 
 def listRecursive(d, key):
     for k, v in d.items():
