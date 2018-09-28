@@ -26,7 +26,7 @@ def read_data(file_list, file_type, clientId):
             if file_type == 'textfile':
                 datasets[str(ix)] = np.loadtxt(filename)
             if file_type == 'npzfile':
-                datasets[str(ix)] = np.load(filename)['dataset']
+                datasets[str(ix)] = np.load(filename)['dataset'].T
     else:
         raise ValueError("No files listed for site: {localID}".format(localID=clientId))
     
