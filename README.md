@@ -17,7 +17,7 @@ This repository contains code for decentralized row means written for the new CO
 `sudo npm i -g coinstac-simulator@4.0.0`
 3. Clone this repository:\
 `git clone https://github.com/rsilva8/decentralized-row-means`
-4. Change directory:
+4. Change directory:\
 `cd decentralized-row-means`
 5. Build the docker image (Docker must be running):\
 `docker build -t decentralized-row-means .`
