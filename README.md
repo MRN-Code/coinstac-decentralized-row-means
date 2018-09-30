@@ -1,5 +1,7 @@
 # decentralized-row-means
-This repository contains code for decentralized row means written for the new coinstac simulator (`v4.0.0`). It contains the following files:
+This repository contains code for decentralized row means written for the new COINSTAC simulator (`v4.0.0`).
+
+It contains the following files:
 1. local.py - computes the local row sums and number of columns from local data and sends results to remote site.
 2. remote.py - aggreagates the local row sums and number of columns sent by local sites and returns the global row means.
 3. compspec.json - computation specifications
