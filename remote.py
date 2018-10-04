@@ -24,7 +24,7 @@ def remote_1(args):
     # Compute global row sum over all local row_sums
     row_sum_global = np.hstack(
         tuple(np.array(su['row_sum']) for (localID,su) in inputs.items())
-    ).sum(axis=1)[:,None]
+    ).sum(axis=1)
 
     # Compoute global number of columns over all local num_cols
     num_cols_global = np.array([su['num_cols'] for (localID,su) in inputs.items()]).sum()
