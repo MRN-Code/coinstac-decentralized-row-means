@@ -35,7 +35,7 @@ def remote_1(args):
     # Compile results to be transmitted to local sites and cached for reuse in next iteration
     computation_output = {
         "output": {
-            "row_mean_global": row_mean_global
+            "row_mean_global": row_mean_global.tolist()
         },
         "cache": dict(),
         "success": True
