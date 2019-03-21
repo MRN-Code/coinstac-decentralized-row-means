@@ -7,6 +7,7 @@ Created on Thu Sep 27 17:03:00 2018 (MDT)
 """
 
 import numpy as np
+import nibabel as nib
 
 def listRecursive(d, key):
     for k, v in d.items():
@@ -27,6 +28,8 @@ def read_data(file_list, file_type, clientId):
                 datasets[str(ix)] = np.loadtxt(filename)
             if file_type == 'npzfile':
                 datasets[str(ix)] = np.load(filename)['dataset'].T
+            if file_type == 'nifti':
+                datasets[str(ix)] = nib.load(filename).get_fdata()
     else:
         raise ValueError("No files listed for site: {localID}".format(localID=clientId))
     

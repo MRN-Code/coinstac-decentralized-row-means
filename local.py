@@ -24,6 +24,7 @@ def local_1(args):
     file_type = inputs['data'][1][0]
 
     # Read local data files
+    raise(ValueError("Hello world"))
     datasets = ut.read_data(file_list, file_type, state['clientId'])
     
     # Start local computation:
@@ -54,7 +55,7 @@ def local_1(args):
 
 
 if __name__ == '__main__':
-
+    raise(ValueError("Hello world"))
     parsed_args = json.loads(sys.stdin.read())
     phase_key = list(ut.listRecursive(parsed_args, 'computation_phase'))
     
