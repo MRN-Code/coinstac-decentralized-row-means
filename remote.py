@@ -13,21 +13,21 @@ import numpy as np
 import utils as ut
 
 
-def remote_1(args):
+def drm_remote_1(args):
 
     state = args['state']
     inputs = args['input']
     cache = args['cache']
 
     # Start remote computation:
-    
+
     # Compute global row sum over all local row_sums
     row_sum_global = np.hstack(
-        tuple(np.array(su['row_sum']) for (localID,su) in inputs.items())
+        tuple(np.array(su['row_sum']) for (localID, su) in inputs.items())
     ).sum(axis=1)
 
     # Compoute global number of columns over all local num_cols
-    num_cols_global = np.array([su['num_cols'] for (localID,su) in inputs.items()]).sum()
+    num_cols_global = np.array([su['num_cols'] for (localID, su) in inputs.items()]).sum()
 
     # Compute global row mean
     row_mean_global = row_sum_global/num_cols_global
@@ -40,7 +40,7 @@ def remote_1(args):
         "cache": dict(),
         "success": True
     }
-        
+
     #output_file = os.path.join(state['outputDirectory'], 'row_mean_global.data')
     #np.savetxt(output_file, row_mean_global, fmt='%.6f')
 
@@ -56,7 +56,7 @@ if __name__ == '__main__':
     if not phase_key:
         raise ValueError("Error occurred at Remote: missing phase key from local site(s).")
     elif "local_1" in phase_key:
-        computation_output = remote_1(parsed_args)
+        computation_output = drm_remote_1(parsed_args)
         # Transmit results to remote
         # as file (for large volumes of data; OS overhead):
         # as JSON string (for smaller volumes of data; JSON conversion overhead):
