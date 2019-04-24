@@ -19,14 +19,7 @@ def drm_local_1(args):
     inputs = args['input']
     cache = args['cache']
 
-    csv_file = os.path.join(state["baseDirectory"], inputs['datafile'][0])
-    datasets = ut.read_data_csv(csv_file, state["baseDirectory"],
-                                state["clientId"])
-    # file_list = [os.path.join(state["baseDirectory"], file) for file in file_list]
-    #file_type = inputs['data'][1][0]
-
-    # Read local data files
-    #datasets = ut.read_data(file_list, file_type, state['clientId'])
+    datasets = inputs["datasets"]
 
     # Start local computation:
 
@@ -46,6 +39,7 @@ def drm_local_1(args):
                          for (ix, su) in row_sums.items()]).sum()
     # Compile results to be transmitted to remote and cached for reuse in next iteration
     computation_output = {
+        "state": state,
         "output": {
             "row_sum": row_sum.tolist(),
             "num_cols": num_cols,
@@ -58,7 +52,7 @@ def drm_local_1(args):
             },
             "computation_phase": 'drm_local_1'
         },
-        "cache": dict()
+        "cache": cache,
     }
 
     return computation_output

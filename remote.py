@@ -27,18 +27,21 @@ def drm_remote_1(args):
     ).sum(axis=1)
 
     # Compoute global number of columns over all local num_cols
-    num_cols_global = np.array([su['num_cols'] for (localID, su) in inputs.items()]).sum()
+    num_cols_global = np.array([su['num_cols']
+                                for (localID, su) in inputs.items()]).sum()
 
     # Compute global row mean
     row_mean_global = row_sum_global/num_cols_global
 
     # Compile results to be transmitted to local sites and cached for reuse in next iteration
     computation_output = {
+        "state": state,
         "output": {
-            "row_mean_global": row_mean_global.tolist()
+            "row_mean_global": row_mean_global.tolist(),
+            "computation_phase": "drm_remote_1"
         },
-        "cache": dict(),
-        "success": True
+        "cache": cache,
+
     }
 
     #output_file = os.path.join(state['outputDirectory'], 'row_mean_global.data')
@@ -54,7 +57,8 @@ if __name__ == '__main__':
     phase_key = list(ut.listRecursive(parsed_args, 'computation_phase'))
 
     if not phase_key:
-        raise ValueError("Error occurred at Remote: missing phase key from local site(s).")
+        raise ValueError(
+            "Error occurred at Remote: missing phase key from local site(s).")
     elif "local_1" in phase_key:
         computation_output = drm_remote_1(parsed_args)
         # Transmit results to remote
